@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip Card Profile</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            justify-content: center;
+        }
+
+        #card-container{
+            perspective: 1000px;
+        }
+
+        .card{
+            width: 280px;
+            height: 360px;
+        }
+
+        .card-inner{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+        }
+
+        .card-inner.flipped{
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            box-shadow: 0;
+            background: white;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-back { transform: rotateY(180deg); }
+
+        .card-front img{
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+
+        .card-front h2{
+            margin: 16px 0 10px;
+        }
+
+        .card-back h2{
+            margin: 16px 0 10px;
+        }
+
+        .card-front p{
+            color: #555;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .card-back p{
+            color: #555;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        button{
+            margin-top: 18px;
+            padding: 5px;
+            border: none;
+            border-radius: 8px;
+            background-color: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 30px;
+        }
+
+        button:hover{
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div id="card-container">
+        <!--Place code inside JavaScript-->
+    </div>
+
+    <script>
+        //Step Uno
+        const container = document.getElementById('card-container');
+
+        //Step Two
+        let card = document.createElement('div');
+        card.className = "card";
+
+        //Step Tres
+        let cardInner = document.createElement('div');
+        cardInner.className = "card-inner";
+
+        //Step Quarto
+        let cardFront = document.createElement('div');
+        cardFront.className = "card-front";
+
+        //Step Cinco
+        let image = document.createElement('img');
+        image.src = 'avatar.svg';
+        image.alt = 'Profile Picture';
+
+        //Step Sies
+        let name = document.createElement('h2');
+        name.textContent = "John Doe";
+
+        //Step Siete
+        let job = document.createElement('p');
+        job.textContent = 'Web Developer';
+
+        //Step Ocho
+        const flipBtn = document.createElement('button');
+        flipBtn.textContent = 'View Details';
+        flipBtn.onclick = function(){
+            cardInner.classList.toggle('flipped');
+        }
+
+        //Step Nueve
+        cardFront.appendChild(image);
+        cardFront.appendChild(name);
+        cardFront.appendChild(job);
+        cardFront.appendChild(flipBtn);
+
+        //Step 10
+        let cardBack = document.createElement('div');
+        cardBack.className = "card-back";
+
+        //Step 11
+        let detailsTitle = document.createElement('h2');
+        detailsTitle.textContent = "Profile Details";
+
+        //Step 12
+        let email = document.createElement('p');
+        email.textContent = "Email: john@example.com";
+
+        let phone = document.createElement('p');
+        phone.textContent = "Phone: (123) 456-7890";
+
+        let city = document.createElement('p');
+        city.textContent = "City: Phoenix, Arizona";
+
+        let hobby = document.createElement('p');
+        hobby.textContent = "Hobby: Photography";
+
+        //Step 13
+        let backBtn = document.createElement('button');
+        backBtn.textContent = "Go Back";
+        backBtn.onclick = function() {
+            cardInner.classList.toggle('flipped');
+        }
+
+
+        //Step 14
+        cardBack.appendChild(detailsTitle);
+        cardBack.appendChild(email);
+        cardBack.appendChild(phone);
+        cardBack.appendChild(city);
+        cardBack.appendChild(hobby);
+        cardBack.appendChild(backBtn);
+
+        //Step 15
+        cardInner.appendChild(cardFront);
+        cardInner.appendChild(cardBack);
+
+        //Step 16
+        card.appendChild(cardInner);
+
+        //Step 17
+        container.appendChild(card);
+    </script>
+</body>
+</html>
